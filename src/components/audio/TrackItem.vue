@@ -49,7 +49,8 @@
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/variables.scss';
+@import '@/styles/variables.scss';
+@import '@/styles/mixins.scss';
 
 .v-card,
 .icons {
@@ -74,12 +75,10 @@
     flex-direction: column;
 
     .card-title {
-      font-size: 20px;
+      @include card-title;
     }
     .card-subtitle {
-      font-size: 12px;
-      line-height: 12px;
-      color: #625e81;
+      @include card-subtitle;
     }
   }
 
@@ -90,7 +89,7 @@
     align-items: center;
 
     .time {
-      color: #625e81;
+      color: $secondary-color;
       padding-right: 35px;
     }
 

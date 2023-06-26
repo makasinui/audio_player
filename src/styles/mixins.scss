@@ -1,0 +1,12 @@
+@import './variables.scss';
+
+@mixin card-title {
+    font-size: 20px;
+    color: white;
+}
+
+@mixin card-subtitle {
+    font-size: 12px;
+    line-height: 12px;
+    color: $secondary-color;
+}

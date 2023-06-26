@@ -1,6 +1,20 @@
 <template>
   <Layout page="Главная">
     <v-row class="content">
+      <v-col cols="12">
+        <main-title>Последние альбомы</main-title>
+        <div class="albums-container">
+          <album-item></album-item>
+          <album-item></album-item>
+          <album-item></album-item>
+          <album-item></album-item>
+          <album-item></album-item>
+          <album-item></album-item>
+          <album-item></album-item>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row class="content">
       <v-col cols="6">
         <main-title>Чарт</main-title>
         <div class="audio-container">
@@ -19,7 +33,7 @@
           <playlist-item></playlist-item>
           <playlist-item></playlist-item>
           <playlist-item></playlist-item>
-          
+
         </div>
       </v-col>
     </v-row>
@@ -29,6 +43,7 @@
 <script setup>
 import TrackItem from "@/components/audio/TrackItem.vue";
 import PlaylistItem from "../components/audio/PlaylistItem.vue";
+import AlbumItem from '@/components/audio/AlbumItem.vue';
 </script>
 
 <style lang="scss">
@@ -41,5 +56,10 @@ import PlaylistItem from "../components/audio/PlaylistItem.vue";
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+}
+.albums-container {
+  display: flex;
+  gap: 15px;
+  overflow: auto;
 }
 </style>

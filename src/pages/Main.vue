@@ -15,10 +15,15 @@
       <v-col cols="6">
         <main-title>Чарт</main-title>
         <div class="audio-container">
-          <track-item></track-item>
-          <track-item></track-item>
-          <track-item></track-item>
-          <track-item></track-item>
+          <track-item 
+            v-for="track in data" 
+            :key="track.id"
+            :artist="track.artist"
+            :img="track.img"
+            :track-name="track.trackName"
+            :track-url="track.url"
+            :favorite="track.favorite"
+          />
         </div>
       </v-col>
       <v-col cols="6">
@@ -43,6 +48,8 @@ import TrackItem from "@/components/audio/TrackItem.vue";
 import PlaylistItem from "@/components/audio/PlaylistItem.vue";
 import AlbumItem from '@/components/audio/AlbumItem.vue';
 import CurrentTrack from "@/components/audio/currentTrack/CurrentTrack.vue";
+
+import data from "../mock/audio";
 </script>
 
 <style lang="scss">

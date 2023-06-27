@@ -1,13 +1,14 @@
 <template>
     <div class="current-track">
-        <current-track-card></current-track-card>
+        <current-track-card
+            :artist="audio.artist"
+            :img="audio.img"
+            :track-name="audio.trackName"
+        />
         <div class="track-end">
-            <div class="time">
-                3:25
-            </div>
             <div class="actions">
                 <v-icon size="30" icon="skip_previous"/>
-                <v-icon size="35" icon="play_circle_outline"/>
+                <v-icon @click="playAudio" size="35" :icon="playing ? 'pause_circle_outline' : 'play_circle_outline'"/>
                 <v-icon size="30" icon="skip_next"/>
             </div>
             <div class="volume">
@@ -18,7 +19,25 @@
 </template>
 
 <script setup>
+import { useStore } from 'vuex'
+import { ref, computed, onMounted, watch } from 'vue'
+
 import CurrentTrackCard from './CurrentTrackCard.vue';
+const store = useStore();
+
+const audio = computed(() => store.getters['getCurrentTrack']);
+const track = computed(() => store.getters['getInstance']);
+const playing = ref(true);
+
+const playAudio = () => {
+    if(playing.value) {
+        track.value.pause()
+    } else {
+        track.value.play()
+    }
+
+    playing.value = !playing.value;
+}
 </script>
 
 <style lang="scss">

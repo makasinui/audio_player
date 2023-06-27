@@ -6,19 +6,27 @@
           <div>
             <v-avatar size="60" rounded="0">
               <v-img
-                src="https://cdn.vuetifyjs.com/images/cards/halcyon.png"
+                :src="img"
               ></v-img>
             </v-avatar>
           </div>
           <div class="card-name">
-            <div class="card-title">Halcyon Days</div>
-            <div class="card-subtitle">Ellie Goulding</div>
+            <div class="card-title">{{trackName}}</div>
+            <div class="card-subtitle">{{artist}}</div>
           </div>
         </v-card-title>
       </div>
     </div>
   </v-card>
 </template>
+
+<script setup>
+const props = defineProps({
+  artist: String,
+  img: String,
+  trackName: String,
+});
+</script>
 
 <style lang="scss" scoped>
 @import "../../../styles/mixins.scss";

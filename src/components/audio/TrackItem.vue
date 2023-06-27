@@ -5,6 +5,7 @@
         v-bind="props"
         :color="isHovering ? '#ff506d' : '#070827'"
         flat
+        @click="playAudio"
       >
         <div class="d-flex flex-no-wrap justify-space-between">
           <div class="w-100">
@@ -12,13 +13,13 @@
               <div>
                 <v-avatar size="50" :rounded="0">
                   <v-img
-                    src="https://cdn.vuetifyjs.com/images/cards/halcyon.png"
+                    :src="img"
                   ></v-img>
                 </v-avatar>
               </div>
               <div class="card-name">
-                <div class="card-title">Halcyon Days</div>
-                <div class="card-subtitle">Ellie Goulding</div>
+                <div class="card-title">{{ trackName }}</div>
+                <div class="card-subtitle">{{ artist }}</div>
               </div>
               <div class="card-actions">
                 <span class="time">2:47</span>
@@ -45,7 +46,26 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
+import { useStore } from 'vuex'
 
+const store = useStore();
+const props = defineProps({
+  artist: String,
+  img: String,
+  trackName: String,
+  trackUrl: String,
+  favorite: Boolean
+});
+
+const playAudio = () => {
+  const instance = new Audio(new URL(props.trackUrl, import.meta.url));
+  instance.play();
+
+  store.commit('changeCurrentTrack', props);
+  store.commit('changeInstance', instance)
+  
+}
 </script>
 
 <style lang="scss" scoped>

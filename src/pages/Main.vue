@@ -8,9 +8,6 @@
           <album-item></album-item>
           <album-item></album-item>
           <album-item></album-item>
-          <album-item></album-item>
-          <album-item></album-item>
-          <album-item></album-item>
         </div>
       </v-col>
     </v-row>
@@ -37,13 +34,15 @@
         </div>
       </v-col>
     </v-row>
+    <current-track />
   </Layout>
 </template>
 
 <script setup>
 import TrackItem from "@/components/audio/TrackItem.vue";
-import PlaylistItem from "../components/audio/PlaylistItem.vue";
+import PlaylistItem from "@/components/audio/PlaylistItem.vue";
 import AlbumItem from '@/components/audio/AlbumItem.vue';
+import CurrentTrack from "@/components/audio/CurrentTrack.vue";
 </script>
 
 <style lang="scss">
@@ -60,6 +59,6 @@ import AlbumItem from '@/components/audio/AlbumItem.vue';
 .albums-container {
   display: flex;
   gap: 15px;
-  overflow: auto;
+  overflow: hidden;
 }
 </style>

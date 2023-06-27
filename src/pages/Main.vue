@@ -42,7 +42,7 @@
 import TrackItem from "@/components/audio/TrackItem.vue";
 import PlaylistItem from "@/components/audio/PlaylistItem.vue";
 import AlbumItem from '@/components/audio/AlbumItem.vue';
-import CurrentTrack from "@/components/audio/CurrentTrack.vue";
+import CurrentTrack from "@/components/audio/currentTrack/CurrentTrack.vue";
 </script>
 
 <style lang="scss">

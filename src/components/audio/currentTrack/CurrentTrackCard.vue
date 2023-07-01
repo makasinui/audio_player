@@ -21,13 +21,23 @@
 </template>
 
 <script setup>
+import { ref, watch } from "vue";
+
 const props = defineProps({
   artist: String,
   img: String,
   trackName: String,
 });
 
-const image = new URL(`../../../assets/img/${props.img}`, import.meta.url).href
+const getImage = () => {
+  return new URL(`../../../assets/img/${props.img}`, import.meta.url).href;
+}
+
+const image = ref(getImage());
+
+watch([props], () => {
+  image.value = getImage();
+})
 </script>
 
 <style lang="scss" scoped>

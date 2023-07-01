@@ -58,10 +58,10 @@ const props = defineProps({
   favorite: Boolean
 });
 
-const image = new URL(props.img, import.meta.url).href;
+const image = new URL(`../../assets/img/${props.img}`, import.meta.url).href;
 
 const playAudio = () => {
-  const instance = new Audio(new URL(props.trackUrl, import.meta.url));
+  const instance = new Audio(new URL(`../../assets/audio/${props.trackUrl}`, import.meta.url));
   instance.play();
 
   store.commit('changeCurrentTrack', props);

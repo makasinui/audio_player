@@ -6,7 +6,7 @@
           <div>
             <v-avatar size="60" rounded="0">
               <v-img
-                :src="img"
+                :src="image"
               ></v-img>
             </v-avatar>
           </div>
@@ -26,6 +26,8 @@ const props = defineProps({
   img: String,
   trackName: String,
 });
+
+const image = new URL(`../../../assets/img/${props.img}`, import.meta.url).href
 </script>
 
 <style lang="scss" scoped>

@@ -12,7 +12,7 @@
       </v-col>
     </v-row>
     <v-row class="content">
-      <v-col cols="6">
+      <v-col cols="12" sm="12" xs="12" md="6">
         <main-title>Чарт</main-title>
         <div class="audio-container">
           <track-item 
@@ -26,7 +26,7 @@
           />
         </div>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="12" sm="12" xs="12" md="6">
         <main-title>Плейлисты</main-title>
         <div class="playlist-container">
           <playlist-item></playlist-item>
@@ -62,6 +62,7 @@ import data from "../mock/audio";
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+  flex: 0 1 100%;
 }
 .albums-container {
   display: flex;

@@ -16,6 +16,11 @@ export const audio = {
             state.currentTrack = data;
         },
         changeInstance(state, data) {
+            /* pause previous audio */
+            if(state.instance) {
+                state.instance.paused ? state.instance.play() : state.instance.pause();
+            }
+            
             state.instance = data;
         }
     }

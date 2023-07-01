@@ -29,5 +29,9 @@
       background: $hover-color-rgba;
     }
   }
+
+  @media screen and (max-width: 470px) {
+    min-width: 100%;
+  }
 }
 </style>

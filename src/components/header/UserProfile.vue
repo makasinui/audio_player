@@ -1,10 +1,9 @@
 <template>
-  <v-menu>
+  <v-menu class="">
     <template #activator="{ props }">
-      <v-avatar>
+      <v-avatar v-bind="props">
         <v-img></v-img>
       </v-avatar>
-      <v-btn v-bind="props"> user.name </v-btn>
     </template>
     <v-list>
       <v-list-item>профиль</v-list-item>

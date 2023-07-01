@@ -1,9 +1,9 @@
 <template>
-    <h1><slot /></h1>
+    <h2><slot /></h2>
 </template>
 
 <style lang="scss" scoped>
-h1 {
+h2 {
     font-size: 30px;
     color: white;
 }

@@ -123,4 +123,26 @@ const playAudio = () => {
 .v-card {
   cursor: pointer;
 }
+
+@media screen and (max-width: $media-sm) {
+  .v-card {
+    max-width: none;
+    margin-left: 0;
+    padding-left: 0;
+
+    &-title {
+      padding-left: 0;
+    }
+  }
+}
+
+@media screen and (max-width: $media-sm) {
+  .v-card {
+    &-title {
+      .time {
+        display: none;
+      }
+    }
+  }
+}
 </style>

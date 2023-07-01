@@ -1,21 +1,23 @@
 <template>
-    <div class="current-track">
-        <current-track-card
-            :artist="audio.artist"
-            :img="audio.img"
-            :track-name="audio.trackName"
-        />
-        <div class="track-end">
-            <div class="actions">
-                <v-icon size="30" icon="skip_previous"/>
-                <v-icon @click="playAudio" size="35" :icon="playing ? 'pause_circle_outline' : 'play_circle_outline'"/>
-                <v-icon size="30" icon="skip_next"/>
-            </div>
-            <div class="volume">
-                <v-icon size="30" icon="volume_up"/>
+    <transition name="fade" mode="out-in">
+        <div class="current-track" v-if="track">
+            <current-track-card
+                :artist="audio.artist"
+                :img="audio.img"
+                :track-name="audio.trackName"
+            />
+            <div class="track-end">
+                <div class="actions">
+                    <v-icon size="30" icon="skip_previous"/>
+                    <v-icon @click="playAudio" size="35" :icon="playing ? 'pause_circle_outline' : 'play_circle_outline'"/>
+                    <v-icon size="30" icon="skip_next"/>
+                </div>
+                <div class="volume">
+                    <v-icon size="30" icon="volume_up"/>
+                </div>
             </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script setup>
@@ -27,7 +29,7 @@ const store = useStore();
 
 const audio = computed(() => store.getters['getCurrentTrack']);
 const track = computed(() => store.getters['getInstance']);
-const playing = ref(true);
+const playing = ref(false);
 
 const playAudio = () => {
     if(playing.value) {
@@ -38,6 +40,10 @@ const playAudio = () => {
 
     playing.value = !playing.value;
 }
+
+watch(audio, () => {
+    playing.value = true;
+})
 </script>
 
 <style lang="scss">
@@ -56,11 +62,22 @@ const playAudio = () => {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     .track-end {
         display: flex;
         align-items: center;
         gap: 30px;
         font-size: 14px;
     }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

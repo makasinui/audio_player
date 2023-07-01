@@ -9,7 +9,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory('/audio_player/'),
+    history: createWebHistory(import.meta.env.VITE_GH_URL),
     routes
 });
 

@@ -13,7 +13,7 @@
               <div>
                 <v-avatar size="50" :rounded="0">
                   <v-img
-                    :src="img"
+                    :src="image"
                   ></v-img>
                 </v-avatar>
               </div>
@@ -57,6 +57,8 @@ const props = defineProps({
   trackUrl: String,
   favorite: Boolean
 });
+
+const image = new URL(props.img, import.meta.url).href;
 
 const playAudio = () => {
   const instance = new Audio(new URL(props.trackUrl, import.meta.url));

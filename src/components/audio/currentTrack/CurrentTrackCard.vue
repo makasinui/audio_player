@@ -4,7 +4,7 @@
       <div class="w-100">
         <v-card-title class="text-h5 card-main">
           <div>
-            <v-avatar size="60" rounded="0">
+            <v-avatar class="card-image" rounded="0">
               <v-img
                 :src="image"
               ></v-img>
@@ -55,15 +55,34 @@ watch([props], () => {
     flex-direction: column;
     justify-content: space-between;
 
+    @media screen and (max-width: 475px) {
+      margin-left: 0;
+      justify-content: center;
+      max-width: 130px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
     .card-title {
       @include card-title;
-      font-size: 22px;
+
+      @media screen and (max-width: 475px) {
+        font-size: 14px;
+      }
     }
     .card-subtitle {
       @include card-subtitle;
-      font-size: 16px;
+      font-size: 14px;
       color: white;
+
+      @media screen and (max-width: 475px) {
+        font-size: 12px;
+      }
     }
+
+  }
+  .card-image {
+    @include set-icon-width(50px, 40px, 475px)
   }
 }
 </style>

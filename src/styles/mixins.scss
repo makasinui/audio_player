@@ -14,3 +14,15 @@
     line-height: 12px;
     color: $secondary-color;
 }
+
+@mixin set-icon-width($width, $screen-width, $screen) {
+    font-size: $width;
+    height: $width;
+    width: $width;
+
+    @media screen and (max-width: $screen) {
+        font-size: $screen-width;
+        height: $screen-width;
+        width: $screen-width;
+    }
+}

@@ -34,5 +34,11 @@ const navigation = [
     name: "Музыканты",
     icon: "group",
   },
+  {
+    id: 4,
+    link: "/my",
+    name: "Моя музыка",
+    icon: ""
+  }
 ];
 </script>

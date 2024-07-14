@@ -80,7 +80,6 @@ const playAudio = () => {
 }
 
 .v-card {
-  max-width: 600px;
   width: 100%;
   border-radius: $border-radius;
 }

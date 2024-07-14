@@ -46,12 +46,16 @@
   }
   .album-title {
     @include card-title;
-    padding-left: 0;
+    & {
+      padding-left: 0;
+    }
   }
 
   .album-subtitle {
     @include card-subtitle;
-    padding-left: 0;
+    & {
+      padding-left: 0;
+    }
   }
 
   &:hover, &:active {

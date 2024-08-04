@@ -20,7 +20,7 @@
                 </v-img>
                 <v-icon
                   v-if="isHovering" 
-                  :icon="isPlaying ? 'pause' : 'play_arrow'" 
+                  :icon="isPlaying && stateInstance === instance ? 'pause' : 'play_arrow'" 
                   size="50" 
                   class="hovering_play"
                 />
@@ -68,8 +68,9 @@ const props = defineProps({
 });
 
 const isPlaying = computed(() => store.getters['isPlayingNow']);
+const stateInstance = computed(() => store.getters['getInstance']);
 const image = new URL(`../../assets/img/${props.img}`, import.meta.url).href;
-const instance = ref(new Audio(new URL(`../../assets/audio/${props.trackUrl}`, import.meta.url)))
+const instance = ref(new Audio(new URL(`../../assets/audio/${props.trackUrl}`, import.meta.url)));
 
 const playAudio = () => {
   store.dispatch('startPlaying', {props, instance: instance.value});

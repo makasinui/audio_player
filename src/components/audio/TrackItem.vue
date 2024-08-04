@@ -14,7 +14,16 @@
                 <v-avatar size="50" :rounded="0">
                   <v-img
                     :src="image"
-                  ></v-img>
+                    :class="isHovering ? 'card-img__hovering' :''"
+                  >
+                  
+                </v-img>
+                <v-icon
+                  v-if="isHovering" 
+                  :icon="isPlaying ? 'pause' : 'play_arrow'" 
+                  size="50" 
+                  class="hovering_play"
+                />
                 </v-avatar>
               </div>
               <div class="card-name">
@@ -46,7 +55,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import { useStore } from 'vuex'
 
 const store = useStore();
@@ -58,15 +67,12 @@ const props = defineProps({
   favorite: Boolean
 });
 
+const isPlaying = computed(() => store.getters['isPlayingNow']);
 const image = new URL(`../../assets/img/${props.img}`, import.meta.url).href;
+const instance = ref(new Audio(new URL(`../../assets/audio/${props.trackUrl}`, import.meta.url)))
 
 const playAudio = () => {
-  const instance = new Audio(new URL(`../../assets/audio/${props.trackUrl}`, import.meta.url));
-  instance.play();
-
-  store.commit('changeCurrentTrack', props);
-  store.commit('changeInstance', instance)
-  
+  store.dispatch('startPlaying', {props, instance: instance.value});
 }
 </script>
 
@@ -119,8 +125,16 @@ const playAudio = () => {
       gap: 10px;
     }
   }
+
+  &-img__hovering {
+    filter: blur(2px);
+  }
 }
 
+.hovering_play {
+  position: absolute;
+  color: $hover-color;
+}
 .v-card {
   cursor: pointer;
 }

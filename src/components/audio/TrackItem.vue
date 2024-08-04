@@ -28,7 +28,7 @@
               </div>
               <div class="card-name">
                 <div class="card-title">{{ trackName }}</div>
-                <div class="card-subtitle">{{ artist }}</div>
+                <div class="card-subtitle">{{ artist.name }}</div>
               </div>
               <div class="card-actions">
                 <span class="time">2:47</span>
@@ -60,16 +60,18 @@ import { useStore } from 'vuex'
 
 const store = useStore();
 const props = defineProps({
-  artist: String,
+  artist: Object,
   img: String,
   trackName: String,
   trackUrl: String,
+  album: Object || undefined,
   favorite: Boolean
 });
 
 const isPlaying = computed(() => store.getters['isPlayingNow']);
 const stateInstance = computed(() => store.getters['getInstance']);
-const image = new URL(`../../assets/img/${props.img}`, import.meta.url).href;
+
+const image = new URL(`../../assets/img/${props.img ?? props.album.img}`, import.meta.url).href;
 const instance = ref(new Audio(new URL(`../../assets/audio/${props.trackUrl}`, import.meta.url)));
 
 const playAudio = () => {

@@ -16,8 +16,9 @@
         <main-title>Чарт</main-title>
         <div class="audio-container">
           <track-item 
-            v-for="track in data" 
+            v-for="track in trackData" 
             :key="track.id"
+            :album="track.album"
             :artist="track.artist"
             :img="track.img"
             :track-name="track.trackName"
@@ -49,7 +50,23 @@ import PlaylistItem from "@/components/audio/PlaylistItem.vue";
 import AlbumItem from '@/components/audio/AlbumItem.vue';
 import CurrentTrack from "@/components/audio/currentTrack/CurrentTrack.vue";
 
-import data from "../mock/audio";
+import tracks from "../mock/audio";
+import artists from "../mock/artists";
+import albums from "../mock/albums";
+
+import { onMounted, ref } from "vue";
+
+/* TODO: мок данные удалить в будущем... */
+const trackData = ref(tracks);
+onMounted(() => {
+  trackData.value.map((track) => {
+    const artist = artists.find((item) => item.id === track.artistId);
+    const album = albums.find((item) => item.id === track.albumId);
+
+    track.artist = artist;
+    track.album = album;
+  })
+})
 </script>
 
 <style lang="scss">

@@ -2,8 +2,8 @@
   <transition name="fade" mode="out-in">
     <div class="current-track" v-if="track">
       <current-track-card
-        :artist="audio.artist"
-        :img="audio.img"
+        :artist="audio.artist.name"
+        :img="audio.img ?? audio.album.img"
         :track-name="audio.trackName"
       />
       <div class="track-end">

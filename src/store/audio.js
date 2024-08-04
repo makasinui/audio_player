@@ -38,7 +38,7 @@ export const audio = {
                 console.log(paused)
                 paused ? stateInstance.play() : stateInstance.pause();
                    
-                state.commit('changePlaying', !paused);
+                state.commit('changePlaying', paused);
             }
 
             else {

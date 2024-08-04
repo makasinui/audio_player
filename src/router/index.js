@@ -1,10 +1,16 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Main from '@/pages/Main.vue'
+
+import Main from '@/pages/Main.vue';
+import Albums from '@/pages/Albums.vue';
 
 const routes = [
     {
         path: '/',
         component: Main
+    },
+    {
+        path: '/albums',
+        component: Albums
     }
 ]
 

@@ -3,12 +3,12 @@
     <v-row class="content">
       <v-col cols="12">
         <main-title>Последние альбомы</main-title>
-        <div class="albums-container">
+       <!--  <div class="albums-container">
           <album-item></album-item>
           <album-item></album-item>
           <album-item></album-item>
           <album-item></album-item>
-        </div>
+        </div> -->
       </v-col>
     </v-row>
     <v-row class="content">
@@ -40,7 +40,6 @@
         </div>
       </v-col>
     </v-row>
-    <current-track />
   </Layout>
 </template>
 
@@ -48,7 +47,6 @@
 import TrackItem from "@/components/audio/TrackItem.vue";
 import PlaylistItem from "@/components/audio/PlaylistItem.vue";
 import AlbumItem from '@/components/audio/AlbumItem.vue';
-import CurrentTrack from "@/components/audio/currentTrack/CurrentTrack.vue";
 
 import tracks from "../mock/audio";
 import artists from "../mock/artists";

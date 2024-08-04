@@ -1,7 +1,8 @@
 const data = [
     {
         id: 1,
-        name: 'Test',
+        artistId: 1,
+        name: 'Album 1',
         img: 'cdplayer.png'
     }
 ];

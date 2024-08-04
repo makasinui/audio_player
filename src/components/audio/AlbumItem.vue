@@ -1,23 +1,74 @@
 <template>
   <v-hover>
     <template #default="{ isHovering, props }">
-      <v-card v-bind="props" :color="isHovering ? '#ff506d' : '#070827'" flat class="album-item" width="240">
+      <v-card @click="openAlbum" v-bind="props" :color="isHovering ? '#ff506d' : '#070827'" flat class="album-item" width="240">
         <v-img
           class="align-center album-img text-white"
           height="200"
-          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+          :src="image"
           cover
         >
             <div class="album-actions">
                 <v-icon icon="play_arrow" class="play" size="50" />
             </div>
         </v-img>
-        <v-card-title class="album-title">Summer vibes</v-card-title>
-        <v-card-subtitle class="album-subtitle">Ellie Ellie</v-card-subtitle>
+        <v-card-title class="album-title">{{ album.name }}</v-card-title>
+        <v-card-subtitle class="album-subtitle">{{ album.artist.name }}</v-card-subtitle>
       </v-card>
+      <v-navigation-drawer color="#0b0b31" width="100%" v-if="isOpen" permanent location="right">
+        <v-list>
+          <v-list-item>
+            Альбом <br> {{ album.name }}
+          </v-list-item>
+          <v-list-item v-for="track in trackData" :key="track.id">
+            <track-item 
+              :album="track.album"
+              :artist="track.artist"
+              :img="track.img"
+              :track-name="track.trackName"
+              :track-url="track.url"
+              :favorite="track.favorite"
+          />
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
     </template>
   </v-hover>
 </template>
+
+<script setup>
+import TrackItem from "@/components/audio/TrackItem.vue";
+
+import tracks from "@/mock/audio";
+import artists from "@/mock/artists";
+import albums from "@/mock/albums";
+
+import { ref, onMounted } from 'vue';
+import { getImageSrc } from '@/helpers/index.js';
+
+const props = defineProps({
+  album: Object
+});
+
+const isOpen = ref(false);
+
+const openAlbum = () => {
+  isOpen.value = !isOpen.value
+}
+
+const image = getImageSrc(props.album.img);
+
+const trackData = ref(tracks);
+onMounted(() => {
+  trackData.value.map((track) => {
+    const artist = artists.find((item) => item.id === track.artistId);
+    const album = albums.find((item) => item.id === track.albumId);
+
+    track.artist = artist;
+    track.album = album;
+  })
+})
+</script>
 
 <style lang="scss" scoped>
 @import "@/styles/variables.scss";

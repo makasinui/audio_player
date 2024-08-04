@@ -58,6 +58,8 @@
 import { onMounted, ref, computed } from 'vue';
 import { useStore } from 'vuex'
 
+import { getImageSrc } from '@/helpers';
+
 const store = useStore();
 const props = defineProps({
   artist: Object,
@@ -71,7 +73,7 @@ const props = defineProps({
 const isPlaying = computed(() => store.getters['isPlayingNow']);
 const stateInstance = computed(() => store.getters['getInstance']);
 
-const image = new URL(`../../assets/img/${props.img ?? props.album.img}`, import.meta.url).href;
+const image = getImageSrc(props.img ?? props.album.img);
 const instance = ref(new Audio(new URL(`../../assets/audio/${props.trackUrl}`, import.meta.url)));
 
 const playAudio = () => {

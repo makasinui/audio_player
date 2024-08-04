@@ -24,7 +24,7 @@ const navigation = [
   },
   {
     id: 2,
-    link: "/",
+    link: "/albums",
     name: "Альбомы",
     icon: "album",
   },

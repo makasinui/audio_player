@@ -12,7 +12,7 @@
           <v-icon
             @click="playAudio"
             class="play"
-            :icon="playing ? 'pause_circle_outline' : 'play_circle_outline'"
+            :icon="isPlaying ? 'pause_circle_outline' : 'play_circle_outline'"
           />
           <v-icon class="next-track" icon="skip_next" />
         </div>
@@ -33,21 +33,11 @@ const store = useStore();
 
 const audio = computed(() => store.getters["getCurrentTrack"]);
 const track = computed(() => store.getters["getInstance"]);
-const playing = ref(false);
+const isPlaying = computed(() => store.getters['isPlayingNow']);
 
 const playAudio = () => {
-  if (playing.value) {
-    track.value.pause();
-  } else {
-    track.value.play();
-  }
-
-  playing.value = !playing.value;
+  store.dispatch('startPlaying');
 };
-
-watch(audio, () => {
-  playing.value = true;
-});
 </script>
 
 <style lang="scss">

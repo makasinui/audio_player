@@ -28,14 +28,13 @@ export const audio = {
         }
     },
     actions: {
-        startPlaying(state, data) {
+        startPlaying(state, data = {}) {
             const { props, instance } = data;
             const stateInstance = state.getters['getInstance'];
-            
             /* если текущий трек совпадает с приходящим */
-            if(stateInstance === instance) {
+            if(stateInstance === instance || !props) {
                 const paused = stateInstance.paused;
-                console.log(paused)
+
                 paused ? stateInstance.play() : stateInstance.pause();
                    
                 state.commit('changePlaying', paused);

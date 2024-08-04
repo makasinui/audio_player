@@ -1,5 +1,5 @@
 <template>
-  <v-card color="#ff506d" flat>
+  <v-card class="current-track-card" flat>
     <div class="d-flex flex-no-wrap justify-space-between">
       <div class="w-100">
         <v-card-title class="text-h5 card-main">
@@ -43,7 +43,9 @@ watch([props], () => {
 <style lang="scss" scoped>
 @import "../../../styles/mixins.scss";
 @import "../../../styles/variables.scss";
-
+.current-track-card {
+  background: unset;
+}
 .card-main {
   display: flex;
   gap: 15px;

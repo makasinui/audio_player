@@ -52,7 +52,7 @@ const playAudio = () => {
   left: 0px;
   padding: 0 20px;
   z-index: 9999;
-  background: $hover-color;
+  background: $hover-color-rgba;
   width: 100%;
   display: flex;
   align-items: center;

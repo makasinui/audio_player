@@ -3,7 +3,7 @@
     <template #default="{ isHovering, props }">
       <v-card
         v-bind="props"
-        :color="isHovering ? '#ff506d' : '#070827'"
+        :color="isHovering || instance === stateInstance ? '#ff506d' : '#070827'"
         flat
         @click="playAudio"
       >

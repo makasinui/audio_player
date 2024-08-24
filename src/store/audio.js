@@ -1,3 +1,4 @@
+import axios from "axios";
 export const audio = {
     state: () => ({
         currentTrack: {},
@@ -28,6 +29,12 @@ export const audio = {
         }
     },
     actions: {
+        async getAllTracks() {
+            const { data } = await axios
+                .get(`http://${import.meta.env.VITE_BACKEND_URL}/api/audio/`);
+            
+                return data;
+        },
         startPlaying(state, data = {}) {
             const { props, instance } = data;
             const stateInstance = state.getters['getInstance'];

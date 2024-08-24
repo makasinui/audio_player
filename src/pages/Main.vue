@@ -48,15 +48,16 @@ import TrackItem from "@/components/audio/TrackItem.vue";
 import PlaylistItem from "@/components/audio/PlaylistItem.vue";
 import AlbumItem from '@/components/audio/AlbumItem.vue';
 
-import tracks from "../mock/audio";
 import artists from "../mock/artists";
 import albums from "../mock/albums";
 
 import { onMounted, ref } from "vue";
+import { useStore } from 'vuex';
 
-/* TODO: мок данные удалить в будущем... */
-const trackData = ref(tracks);
-onMounted(() => {
+const store = useStore();
+
+onMounted(async() => {
+  const trackData = await store.dispatch('getAllTracks');
   trackData.value.map((track) => {
     const artist = artists.find((item) => item.id === track.artistId);
     const album = albums.find((item) => item.id === track.albumId);

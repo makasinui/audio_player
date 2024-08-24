@@ -21,7 +21,7 @@
             :album="track.album"
             :artist="track.artist"
             :img="track.img"
-            :track-name="track.trackName"
+            :track-name="track.name"
             :track-url="track.url"
             :favorite="track.favorite"
           />
@@ -48,23 +48,14 @@ import TrackItem from "@/components/audio/TrackItem.vue";
 import PlaylistItem from "@/components/audio/PlaylistItem.vue";
 import AlbumItem from '@/components/audio/AlbumItem.vue';
 
-import artists from "../mock/artists";
-import albums from "../mock/albums";
-
 import { onMounted, ref } from "vue";
 import { useStore } from 'vuex';
 
 const store = useStore();
+const trackData = ref();
 
 onMounted(async() => {
-  const trackData = await store.dispatch('getAllTracks');
-  trackData.value.map((track) => {
-    const artist = artists.find((item) => item.id === track.artistId);
-    const album = albums.find((item) => item.id === track.albumId);
-
-    track.artist = artist;
-    track.album = album;
-  })
+  trackData.value = await store.dispatch('getAllTracks');
 })
 </script>
 

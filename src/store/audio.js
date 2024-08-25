@@ -31,7 +31,7 @@ export const audio = {
     actions: {
         async getAllTracks() {
             const { data } = await axios
-                .get(`http://${import.meta.env.VITE_BACKEND_URL}/api/audio/`);
+                .get(`${import.meta.env.VITE_BACKEND_URL}/api/audio/`);
             
                 return data;
         },

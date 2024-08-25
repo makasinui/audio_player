@@ -32,7 +32,7 @@
               </div>
               <div class="card-actions">
                 <span class="time">2:47</span>
-                <div class="icons">
+                <div class="icons" v-if="token">
                   <v-hover>
                     <template #default="{ isHovering, props }">
                       <v-icon
@@ -75,6 +75,8 @@ const stateInstance = computed(() => store.getters['getInstance']);
 
 const image = getImageSrc(props.img ?? props.album.img);
 const instance = ref(new Audio(new URL(`../../assets/audio/${props.trackUrl}`, import.meta.url)));
+
+const token = computed(() => store.getters.getToken)
 
 const playAudio = () => {
   store.dispatch('startPlaying', {props, instance: instance.value});

@@ -4,6 +4,7 @@ import Main from '@/pages/Main.vue';
 import Albums from '@/pages/Albums.vue';
 import Register from "@/pages/Register.vue";
 import Login from "@/pages/Login.vue";
+import Artists from "@/pages/artists/Artists.vue";
 
 const routes = [
     {
@@ -21,6 +22,10 @@ const routes = [
     {
         path: '/login',
         component: Login
+    },
+    {
+        path: '/artists',
+        component: Artists
     }
 ]
 

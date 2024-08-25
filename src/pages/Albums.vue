@@ -4,7 +4,11 @@
       <v-col cols="12">
         <main-title>Альбомы</main-title>
         <div class="albums-container">
-          <album-item v-for="album in albums" :album="album" :key="album.id"></album-item>
+          <album-item 
+            v-for="album in albumsData" 
+            :album="album" 
+            :key="album.id" 
+          />
         </div>
       </v-col>
     </v-row>
@@ -14,17 +18,14 @@
 <script setup>
 import AlbumItem from '@/components/audio/AlbumItem.vue';
 import { onMounted, ref } from 'vue';
-import albums from '../mock/albums';
-import artists from '../mock/artists';
+import { useStore } from 'vuex';
 
-/* TODO: HARDCODE!!!! DELETE WHER U FINALLY GET BACKEND */
-onMounted(() => {
-  albums.map((album) => {
-      const artist = artists.find((artist) => artist.id === album.artistId);
-      album.artist = artist;
-    })
-  }
-);
+const store = useStore();
+const albumsData = ref();
+
+onMounted(async() => {
+  albumsData.value = await store.dispatch('getAllAlbums');
+})
 
 </script>
 

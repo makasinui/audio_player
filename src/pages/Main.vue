@@ -6,6 +6,7 @@
         <div class="albums-container">
           <album-item
             v-for="album in albumsData"
+            :key="album.id"
             :album="album"
           />
           

@@ -22,9 +22,10 @@
           </v-list-item>
           <v-list-item v-for="track in album.tracks" :key="track.id">
             <track-item 
-              :album="track.album"
-              :artist="track.artist"
-              :img="track.img"
+              :key="track.id"
+              :album="album"
+              :artist="album.artist"
+              :img="track?.img"
               :track-name="track.name"
               :track-url="track.url"
               :favorite="track.favorite"

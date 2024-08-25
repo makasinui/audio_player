@@ -20,12 +20,12 @@
           <v-list-item>
             Альбом <br> {{ album.name }}
           </v-list-item>
-          <v-list-item v-for="track in trackData" :key="track.id">
+          <v-list-item v-for="track in album.tracks" :key="track.id">
             <track-item 
               :album="track.album"
               :artist="track.artist"
               :img="track.img"
-              :track-name="track.trackName"
+              :track-name="track.name"
               :track-url="track.url"
               :favorite="track.favorite"
           />
@@ -38,10 +38,6 @@
 
 <script setup>
 import TrackItem from "@/components/audio/TrackItem.vue";
-
-import tracks from "@/mock/audio";
-import artists from "@/mock/artists";
-import albums from "@/mock/albums";
 
 import { ref, onMounted } from 'vue';
 import { getImageSrc } from '@/helpers/index.js';
@@ -57,17 +53,6 @@ const openAlbum = () => {
 }
 
 const image = getImageSrc(props.album.img);
-
-const trackData = ref(tracks);
-onMounted(() => {
-  trackData.value.map((track) => {
-    const artist = artists.find((item) => item.id === track.artistId);
-    const album = albums.find((item) => item.id === track.albumId);
-
-    track.artist = artist;
-    track.album = album;
-  })
-})
 </script>
 
 <style lang="scss" scoped>

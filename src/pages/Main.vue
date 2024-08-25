@@ -3,12 +3,13 @@
     <v-row class="content">
       <v-col cols="12">
         <main-title>Последние альбомы</main-title>
-       <!--  <div class="albums-container">
-          <album-item></album-item>
-          <album-item></album-item>
-          <album-item></album-item>
-          <album-item></album-item>
-        </div> -->
+        <div class="albums-container">
+          <album-item
+            v-for="album in albumsData"
+            :album="album"
+          />
+          
+        </div>
       </v-col>
     </v-row>
     <v-row class="content">
@@ -53,9 +54,11 @@ import { useStore } from 'vuex';
 
 const store = useStore();
 const trackData = ref();
+const albumsData = ref();
 
 onMounted(async() => {
   trackData.value = await store.dispatch('getAllTracks');
+  albumsData.value = await store.dispatch('getAllAlbums');
 })
 </script>
 

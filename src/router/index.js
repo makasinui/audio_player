@@ -5,6 +5,7 @@ import Albums from '@/pages/Albums.vue';
 import Register from "@/pages/Register.vue";
 import Login from "@/pages/Login.vue";
 import Artists from "@/pages/artists/Artists.vue";
+import Artist from "@/pages/artists/Artist.vue";
 
 const routes = [
     {
@@ -26,6 +27,10 @@ const routes = [
     {
         path: '/artists',
         component: Artists
+    },
+    {
+        path: '/artists/:id',
+        component: Artist
     }
 ]
 

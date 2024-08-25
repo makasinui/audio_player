@@ -35,7 +35,7 @@ const props = defineProps({
 });
 
 const handleClick = (id) => {
-    router.push(`/artist/${id}`)
+    router.push(`/artists/${id}`)
 };
 
 const image = getImageSrc(props.artist.img);

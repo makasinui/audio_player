@@ -7,13 +7,20 @@
                     
                     <v-card
                         elevation="8"
-                        min-width="448"
+                        max-width="448"
+                        width="100%"
                         rounded="lg"
                         class="form"
                     >
                     <v-card-title align="center">{{ props.page }}</v-card-title>
                         <slot />
+                        <router-link to="/" class="home-page">
+                            <Button color="blue">    
+                                На главную
+                            </Button>
+                        </router-link>
                     </v-card>
+                    
                 </v-container>
             </v-main>
         </v-theme-provider>
@@ -22,6 +29,7 @@
 
 <script setup>
 import Header from "./Header.vue";
+import Button from '../ui/Button.vue'
 const props = defineProps({
     page: String,
 });
@@ -40,6 +48,13 @@ const props = defineProps({
 
         .form {
             padding: 15px;
+        }
+
+        .home-page {
+            display: flex;
+            max-width: 50%;
+            margin: 0 auto;
+            margin-top: 20px;
         }
     }
 }

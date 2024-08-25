@@ -11,6 +11,7 @@
                         rounded="lg"
                         class="form"
                     >
+                    <v-card-title align="center">{{ props.page }}</v-card-title>
                         <slot />
                     </v-card>
                 </v-container>
@@ -39,7 +40,6 @@ const props = defineProps({
 
         .form {
             padding: 15px;
-            padding-top: 35px;
         }
     }
 }

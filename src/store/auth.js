@@ -25,6 +25,12 @@ export const auth = {
 
             return data;
         },
+        async login(state, req) {
+            const { email,password } = req
+            const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/auth`, { email, password });
+
+            return data;
+        },
         logout(state, req) {
             state.commit('deleteToken');
         }

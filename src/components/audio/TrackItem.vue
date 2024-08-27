@@ -38,8 +38,16 @@
                       <v-icon
                         v-bind="props"
                         size="large"
+                        v-if="!favorite"
                         class="favorite-icon"
                         :icon="isHovering ? 'favorite' : 'favorite_border'"
+                      />
+                      <v-icon
+                        v-bind="props"
+                        size="large"
+                        v-else
+                        class="favorite-icon"
+                        :icon="isHovering ? 'favorite_border' : 'favorite'"
                       />
                     </template>
                   </v-hover>

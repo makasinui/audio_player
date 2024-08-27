@@ -25,7 +25,7 @@
             :img="track.img"
             :track-name="track.name"
             :track-url="track.url"
-            :favorite="track.favorite"
+            :favorite="!!track.user_tracks.length"
           />
         </div>
       </v-col>

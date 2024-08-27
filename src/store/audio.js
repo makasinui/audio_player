@@ -29,9 +29,15 @@ export const audio = {
         }
     },
     actions: {
-        async getAllTracks() {
+        async getAllTracks(state) {
+            const token = state.getters.getToken;
+            
             const { data } = await axios
-                .get(`${import.meta.env.VITE_BACKEND_URL}/api/audio/`);
+                .get(`${import.meta.env.VITE_BACKEND_URL}/api/audio/`, {
+                    headers: {
+                        Authorization: token
+                    }
+                });
             
                 return data;
         },

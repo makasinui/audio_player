@@ -15,7 +15,7 @@
         <v-card-title class="album-title">{{ album.name }}</v-card-title>
         <v-card-subtitle class="album-subtitle">{{ album.artist.name }}</v-card-subtitle>
       </v-card>
-      <v-navigation-drawer color="#0b0b31" width="100%" v-if="isOpen" permanent location="right">
+      <v-navigation-drawer color="#0b0b31" width="100%" class="album__tracks-wrapper" v-if="isOpen" permanent location="right">
         <v-list>
           <v-list-item>
             Альбом <br> {{ album.name }}
@@ -28,7 +28,7 @@
               :img="track?.img"
               :track-name="track.name"
               :track-url="track.url"
-              :favorite="!!track.user_tracks.length"
+              :favorite="!!track?.user_tracks?.length"
           />
           </v-list-item>
         </v-list>
@@ -99,6 +99,13 @@ const image = getImageSrc(props.album.img);
     .album-actions {
       visibility: visible;
     }
+  }
+}
+.album__tracks-wrapper {
+  min-width: 500px;
+  
+  @media (max-width: 765px) {
+    min-width: 300px;
   }
 }
 </style>

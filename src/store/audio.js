@@ -41,6 +41,18 @@ export const audio = {
             
                 return data;
         },
+        async makeFavourite(state, data) {
+            const { trackId, favourite } = data;
+            const token = state.getters.getToken;
+
+            const req = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/audio/favourite`, { trackId, favourite }, {
+                headers: {
+                    Authorization: token
+                }
+            })
+            
+            return req.status === 200;
+        },
         startPlaying(state, data = {}) {
             const { props, instance } = data;
             const stateInstance = state.getters['getInstance'];

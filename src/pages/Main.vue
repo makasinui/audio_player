@@ -20,12 +20,14 @@
           <track-item 
             v-for="track in trackData" 
             :key="track.id"
+            :id="track.id"
             :album="track.album"
             :artist="track.artist"
             :img="track.img"
             :track-name="track.name"
             :track-url="track.url"
-            :favorite="!!track.user_tracks.length"
+            :favorite="!!track?.user_tracks?.length"
+            @update="fetchData"
           />
         </div>
       </v-col>
@@ -57,9 +59,13 @@ const store = useStore();
 const trackData = ref();
 const albumsData = ref();
 
-onMounted(async() => {
+const fetchData = async () => {
   trackData.value = await store.dispatch('getAllTracks');
   albumsData.value = await store.dispatch('getAllAlbums');
+}
+
+onMounted(async() => {
+  await fetchData();
 })
 </script>
 

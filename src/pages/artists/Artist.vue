@@ -29,7 +29,7 @@
                             :img="track?.img"
                             :track-name="track.name"
                             :track-url="track.url"
-                            :favorite="!!track.user_tracks.length"
+                            :favorite="!!track?.user_tracks?.length"
                         />
                     </v-tabs-window-item>
                     <v-tabs-window-item class="album-container" value="albums">

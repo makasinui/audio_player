@@ -41,6 +41,7 @@
                         v-if="!favorite"
                         class="favorite-icon"
                         :icon="isHovering ? 'favorite' : 'favorite_border'"
+                        @click.stop="makeFavourite(true)"
                       />
                       <v-icon
                         v-bind="props"
@@ -48,6 +49,7 @@
                         v-else
                         class="favorite-icon"
                         :icon="isHovering ? 'favorite_border' : 'favorite'"
+                        @click.stop="makeFavourite(false)"
                       />
                     </template>
                   </v-hover>
@@ -75,8 +77,10 @@ const props = defineProps({
   trackName: String,
   trackUrl: String,
   album: Object || undefined,
-  favorite: Boolean
+  favorite: Boolean,
+  id: Number
 });
+const emit = defineEmits(['update'])
 
 const isPlaying = computed(() => store.getters['isPlayingNow']);
 const stateInstance = computed(() => store.getters['getInstance']);
@@ -88,6 +92,11 @@ const token = computed(() => store.getters.getToken)
 
 const playAudio = () => {
   store.dispatch('startPlaying', {props, instance: instance.value});
+}
+
+const makeFavourite = async (favourite) => {
+  await store.dispatch('makeFavourite', {favourite, trackId: props.id })
+  emit('update');
 }
 </script>
 
